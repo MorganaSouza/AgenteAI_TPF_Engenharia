@@ -1,15 +1,28 @@
-# Relatório de Inteligência Artificial
 
-Este projeto utiliza a API Gemini do Google para gerar um relatório detalhado sobre Inteligência Artificial. O relatório é estruturado em tópicos e exportado em três formatos diferentes: Word (DOCX), Excel (XLSX) e PDF.
 
-## 🚀 Tecnologias Utilizadas
+-----
 
-* **Python:** Linguagem de programação principal.
-* **Google Gemini API:** Para a geração de conteúdo.
-* **python-docx:** Para a criação de arquivos `.docx`.
-* **openpyxl:** Para a criação de arquivos `.xlsx`.
-* **reportlab:** Para a criação de arquivos `.pdf`.
-* **python-dotenv:** Para o gerenciamento seguro da chave de API.
+# TPF Engenharia - Agente de IA
+
+Este projeto é uma aplicação web completa que utiliza a **API Gemini do Google** para gerar relatórios detalhados a partir de prompts do usuário. A aplicação tem uma interface amigável construída com **Flask** e é capaz de exportar o conteúdo gerado em três formatos profissionais: Word (**DOCX**), Excel (**XLSX**) e PDF (**PDF**).
+
+## 🚀 Funcionalidades Principais
+
+  * **Interface Web Amigável:** O usuário interage com o Agente de IA através de um frontend simples e intuitivo.
+  * **Geração de Relatórios:** Produz conteúdo detalhado sobre diversos tópicos, desde tecnologia até projetos de engenharia.
+  * **Exportação em Múltiplos Formatos:** Permite o download do relatório em DOCX, XLSX e PDF com apenas um clique.
+  * **Nomeação de Arquivos Inteligente:** Os arquivos de relatório são nomeados dinamicamente com base nas palavras-chave mais relevantes do prompt do usuário, como "relatorio\_computacao\_quantica.docx".
+
+## ⚙️ Tecnologias Utilizadas
+
+  * **Python:** Linguagem de programação principal.
+  * **Flask:** Framework web para criar a interface e gerenciar as rotas.
+  * **Google Gemini API:** Para a geração de conteúdo de IA.
+  * **python-docx:** Para a criação de arquivos `.docx`.
+  * **openpyxl:** Para a criação de arquivos `.xlsx`.
+  * **reportlab:** Para a criação de arquivos `.pdf`.
+  * **python-dotenv:** Para o gerenciamento seguro da chave de API.
+  * **re (Regular Expressions):** Para a lógica de nomeação de arquivos.
 
 ## ⚙️ Como Instalar e Rodar
 
@@ -17,7 +30,7 @@ Para rodar este projeto, siga os passos abaixo:
 
 1.  **Clone o repositório:**
     ```sh
-    git clone [https://github.com/MorganaSouza/AgenteAI_TPF_Engenharia.git](https://github.com/MorganaSouza/AgenteAI_TPF_Engenharia.git)
+    git clone https://github.com/MorganaSouza/AgenteAI_TPF_Engenharia.git
     ```
 2.  **Entre na pasta do projeto:**
     ```sh
@@ -37,27 +50,24 @@ Para rodar este projeto, siga os passos abaixo:
     pip install -r requirements.txt
     ```
 5.  **Configure a chave de API:**
-    * Crie um arquivo chamado `.env` na pasta principal do projeto.
-    * Adicione sua chave de API nele, no formato:
+      * Crie um arquivo chamado `.env` na pasta principal do projeto.
+      * Adicione sua chave de API nele, no formato:
         ```ini
         GOOGLE_API_KEY=SUA_CHAVE_AQUI
         ```
-6.  **Execute o script:**
+6.  **Execute a aplicação:**
     ```sh
-    python main.py
+    python app.py
     ```
+    A aplicação estará disponível em `http://127.0.0.1:5000`.
 
 ## ✨ Como Funciona
 
-O script `main.py` se conecta à API do Google Gemini, solicitando uma explicação detalhada sobre o que é Inteligência Artificial. Em seguida, ele processa a resposta e cria os seguintes arquivos na pasta do projeto:
-
-* `relatorio_ia.docx`
-* `relatorio_ia.xlsx`
-* `relatorio_ia.pdf`
+Ao executar o `app.py`, o servidor Flask é iniciado e a interface web é carregada. O usuário insere um prompt, que é enviado ao servidor. O servidor, por sua vez, interage com a API do Google Gemini, gera o relatório e, em seguida, salva os arquivos `.docx`, `.xlsx` e `.pdf` com um nome dinâmico (ex: `relatorio_tecnologias_inovadoras.docx`).
 
 ## 🤝 Como Contribuir
 
-Contribuições são sempre bem-vindas! Se você tiver sugestões de melhoria, sinta-se à vontade para abrir uma _issue_ ou enviar um _pull request_.
+Contribuições são sempre bem-vindas\! Se você tiver sugestões de melhoria, sinta-se à vontade para abrir uma *issue* ou enviar um *pull request*.
 
 ## 📜 Licença
 
