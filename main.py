@@ -6,10 +6,10 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 import re
 import os
-from dotenv import load_dotenv # Importa a função load_dotenv
+from dotenv import load_dotenv
 
 # --- Configurações da API ---
-load_dotenv() # Carrega as variáveis do arquivo .env
+load_dotenv()
 API_KEY = os.getenv("GOOGLE_API_KEY")
 
 if not API_KEY:
@@ -29,19 +29,16 @@ def extrair_topicos(texto: str) -> list:
     """
     Extrai os tópicos numerados e subtópicos da resposta do Gemini.
     """
-    # A expressão regular busca por linhas que começam com um número e um ponto,
-    # capturando todo o texto até a próxima linha numerada ou o final.
     topicos_encontrados = re.findall(r'^\s*(\d+\.\s*.*?)(?=\s*\d+\.|\Z)', texto, re.DOTALL | re.MULTILINE)
     
-    # Se a extração falhar, retorna o texto original dividido por linhas
     if not topicos_encontrados:
         return [linha.strip() for linha in texto.split("\n") if linha.strip()]
     
     return topicos_encontrados
 
-def salvar_docx(topicos: list, nome="relatorio_ia.docx"):
+def salvar_docx(topicos: list, nome_base="relatorio_ia"):
     """
-    Salva os tópicos em um arquivo DOCX com título e parágrafos.
+    Salva os tópicos em um arquivo DOCX com um nome dinâmico.
     """
     doc = Document()
     doc.add_heading("Relatório de Inteligência Artificial", 0)
@@ -49,11 +46,13 @@ def salvar_docx(topicos: list, nome="relatorio_ia.docx"):
     for topico in topicos:
         doc.add_paragraph(topico)
     
-    doc.save(nome)
+    nome_arquivo = f"{nome_base}.docx"
+    doc.save(nome_arquivo)
+    return nome_arquivo
 
-def salvar_xlsx(topicos: list, nome="relatorio_ia.xlsx"):
+def salvar_xlsx(topicos: list, nome_base="relatorio_ia"):
     """
-    Salva os tópicos em um arquivo XLSX, com cada tópico em uma célula.
+    Salva os tópicos em um arquivo XLSX com um nome dinâmico.
     """
     wb = Workbook()
     ws = wb.active
@@ -62,34 +61,29 @@ def salvar_xlsx(topicos: list, nome="relatorio_ia.xlsx"):
     for i, topico in enumerate(topicos, start=1):
         ws[f"A{i}"] = topico
 
-    wb.save(nome)
+    nome_arquivo = f"{nome_base}.xlsx"
+    wb.save(nome_arquivo)
+    return nome_arquivo
 
-def salvar_pdf(topicos: list, nome="relatorio_ia.pdf"):
+def salvar_pdf(topicos: list, nome_base="relatorio_ia"):
     """
-    Salva os tópicos em um arquivo PDF com título e espaçamento dinâmico.
+    Salva os tópicos em um arquivo PDF com um nome dinâmico.
     """
-    # Cria o documento PDF
-    doc = SimpleDocTemplate(nome, pagesize=letter)
-    
-    # Obtém os estilos de parágrafo padrão
+    doc = SimpleDocTemplate(f"{nome_base}.pdf", pagesize=letter)
     styles = getSampleStyleSheet()
-    
-    # Cria uma lista para armazenar os elementos do PDF
     flowables = []
     
-    # Adiciona o título
     titulo = Paragraph("Relatório de Inteligência Artificial", styles['Heading1'])
     flowables.append(titulo)
-    flowables.append(Spacer(1, 12))  # Espaço após o título
+    flowables.append(Spacer(1, 12))
     
-    # Adiciona os tópicos como parágrafos
     for topico in topicos:
         paragrafo = Paragraph(topico, styles['Normal'])
         flowables.append(paragrafo)
-        flowables.append(Spacer(1, 6)) # Espaço entre os tópicos
+        flowables.append(Spacer(1, 6))
         
-    # Constrói o PDF
     doc.build(flowables)
+    return f"{nome_base}.pdf"
 
 # --- Execução principal ---
 
@@ -115,9 +109,9 @@ if __name__ == "__main__":
     print("--- Resposta do Gemini (texto original) ---\n", resposta)
     print("\n--- Tópicos extraídos para formatação ---\n", topicos_processados)
 
-    salvar_docx(topicos_processados)
-    salvar_xlsx(topicos_processados)
-    salvar_pdf(topicos_processados)
+    salvar_docx(topicos_processados, nome_base="relatorio_ia")
+    salvar_xlsx(topicos_processados, nome_base="relatorio_ia")
+    salvar_pdf(topicos_processados, nome_base="relatorio_ia")
 
     print("\n--- Arquivos gerados com sucesso! ---")
     print("Verifique os arquivos: relatorio_ia.docx, relatorio_ia.xlsx, relatorio_ia.pdf")

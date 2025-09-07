@@ -1,0 +1,186 @@
+/* Paleta de Cores TPF Engenharia */
+:root {
+    --azul-principal: #003399; /* Azul Escuro */
+    --azul-secundario: #0699FF; /* Azul Claro */
+    --cinza: #666666;
+    --cinza-claro-bg: #f0f2f5;
+    --branco: #ffffff;
+    --sombra-leve: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--cinza-claro-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Usa min-height para permitir rolagem se necessário */
+    margin: 0;
+    flex-direction: column;
+    color: #333;
+}
+
+.container {
+    background-color: var(--branco);
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px var(--sombra-leve);
+    width: 90%;
+    max-width: 700px;
+    margin: 20px; /* Adiciona margem para telas menores */
+    box-sizing: border-box; /* Garante que padding não aumente a largura */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: var(--azul-principal);
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.slogan {
+    color: var(--cinza);
+    font-size: 1.1em;
+    margin-top: -10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--cinza);
+    font-weight: bold;
+}
+
+textarea {
+    width: calc(100% - 22px); /* Ajusta para padding */
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    resize: vertical;
+    font-size: 1em;
+    min-height: 120px;
+    box-shadow: inset 0 1px 3px var(--sombra-leve);
+    transition: border-color 0.3s ease;
+}
+textarea:focus {
+    border-color: var(--azul-secundario);
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: var(--azul-principal);
+    color: var(--branco);
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+button:hover {
+    background-color: var(--azul-secundario);
+    transform: translateY(-2px);
+}
+button:active {
+    transform: translateY(0);
+}
+
+.resposta-container {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.resposta-container h2 {
+    color: var(--azul-principal);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+pre {
+    background-color: #e9f5ff; /* Um azul bem clarinho para a resposta */
+    color: #333;
+    padding: 15px;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border: 1px solid var(--azul-secundario);
+    line-height: 1.6;
+    font-size: 0.95em;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.export-options {
+    margin-top: 20px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.export-options h3 {
+    color: var(--cinza);
+    margin-bottom: 15px;
+}
+
+.btn-download {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 6px;
+    color: var(--branco);
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-download.docx {
+    background-color: #2b579a; /* Azul escuro */
+}
+.btn-download.docx:hover {
+    background-color: #204176;
+}
+
+.btn-download.xlsx {
+    background-color: #217346; /* Verde do Excel */
+}
+.btn-download.xlsx:hover {
+    background-color: #1a5c38;
+}
+
+.btn-download.pdf {
+    background-color: #b30b00; /* Vermelho do PDF */
+}
+.btn-download.pdf:hover {
+    background-color: #940a00;
+}
+
+.btn-novo-chat {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: var(--azul-secundario);
+    color: var(--branco);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-novo-chat:hover {
+    background-color: #046ab3; /* Tom mais escuro */
+}
+
+/* Estilos para o menu lateral de exportação (se você implementar) */
+/* .sidebar { ... } */
+
+/* Estilos para loading (se você implementar) */
+/* .loading-spinner { ... } */

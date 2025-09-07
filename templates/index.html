@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPF Engenharia - Agente de IA</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TPF - AI</h1>
+            <p class="slogan">TPF Engenharia: Inovação e Inteligência a Serviço dos Seus Projetos</p>
+            <a href="{{ url_for('novo_chat') }}" class="btn-novo-chat">Novo Chat</a>
+        </header>
+        
+        <form method="POST" action="/gerar">
+            <label for="prompt">Insira seu prompt para o Agente de IA:</label>
+            <textarea id="prompt" name="prompt" required placeholder="Ex: Explique em poucas palavras o que é Inteligência Artificial e suas aplicações."></textarea>
+            <button type="submit">Gerar Relatório</button>
+        </form>
+
+        {% if resposta %}
+        <div class="resposta-container">
+            <h2>Resposta do Agente de IA</h2>
+            <pre>{{ resposta }}</pre>
+            <div class="export-options">
+                <h3>Opções de Exportação:</h3>
+                <a href="{{ url_for('download_file', filename='relatorio_ia.docx') }}" class="btn-download docx">Download DOCX</a>
+                <a href="{{ url_for('download_file', filename='relatorio_ia.xlsx') }}" class="btn-download xlsx">Download XLSX</a>
+                <a href="{{ url_for('download_file', filename='relatorio_ia.pdf') }}" class="btn-download pdf">Download PDF</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
